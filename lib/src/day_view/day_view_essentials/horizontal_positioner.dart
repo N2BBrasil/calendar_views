@@ -246,7 +246,15 @@ class HorizontalPositioner {
   double get _constantDayAreaWidth {
     double r = eventAreaWidth;
     r -= (properties.numberOfDaySeparations * _constantDaySeparationAreaWidth);
-    r /= (properties.numberOfDays > 2)?2:properties.numberOfDays;
+
+    if (properties.numberOfDays > 2 && properties.numberOfDays < 8) {
+      r /= 2;
+    } else if (properties.numberOfDays > 8) {
+      r /= 8;
+    } else {
+      r /= properties.numberOfDays;
+    }
+
     r = _minimumZero(r);
     return r;
   }

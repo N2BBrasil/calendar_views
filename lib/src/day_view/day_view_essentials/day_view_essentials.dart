@@ -54,11 +54,8 @@ This error probably happened because DayViewEssentials is child of an widget wit
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-
     return new LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         _throwExceptionIfInvalidBoxConstraints(constraints);
@@ -93,6 +90,8 @@ class _DayViewEssentialsInherited extends InheritedWidget {
   }
 
   static _DayViewEssentialsInherited of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(_DayViewEssentialsInherited);
+    return context.dependOnInheritedWidgetOfExactType(
+      aspect: _DayViewEssentialsInherited,
+    );
   }
 }

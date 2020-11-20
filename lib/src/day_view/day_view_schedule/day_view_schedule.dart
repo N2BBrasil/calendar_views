@@ -1,7 +1,6 @@
+import 'package:calendar_views/day_view.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-
-import 'package:calendar_views/day_view.dart';
 
 /// Widget for display a day view schedule with the given [components].
 class DayViewSchedule extends StatefulWidget {
@@ -106,14 +105,23 @@ Either heightPerMinute must be provided or this widget placed as a child of a wi
         SchedulePositioner positioner =
             _createSchedulePositioner(heightPerMinute);
 
-        double addWidth = 0;
-        if (positioner.properties.numberOfDays > 2) {
-          addWidth = positioner.dayAreaWidth(2)*(positioner.properties.numberOfDays - 2)
-          + positioner.widths.daySeparationAreaWidth*(positioner.properties.numberOfDays)
-          - positioner.widths.timeIndicationAreaWidth;
+        double addWidth = positioner.widths.daySeparationAreaWidth *
+                (positioner.properties.numberOfDays) -
+            positioner.widths.timeIndicationAreaWidth;
+
+        if (positioner.properties.numberOfDays > 2 &&
+            positioner.properties.numberOfDays < 6) {
+          addWidth += positioner.dayAreaWidth(2) *
+              (positioner.properties.numberOfDays - 2);
+        } else if (positioner.properties.numberOfDays > 8) {
+          addWidth += positioner.dayAreaWidth(8) *
+              (positioner.properties.numberOfDays - 8);
         }
+
         return new Container(
-          width: positioner.totalWidth + addWidth,
+          width: positioner.totalWidth +
+              addWidth -
+              positioner.properties.numberOfDays,
           height: positioner.totalHeight,
           child: Stack(
             children: _buildComponentItems(

@@ -6,13 +6,12 @@ description: Collection of customisable calendar related widgets for Flutter.
 author: ZedTheLed<zedtheled@gmail.com>
 
 homepage: https://github.com/ZedTheLed/calendar_views
-documentation:
 
 dependencies:
   flutter:
     sdk: flutter
-  meta: ^1.1.5
-  quiver: ^2.0.0+1
+  meta: ^1.2.4
+  quiver: ^2.1.5
 
 dev_dependencies:
   flutter_test:
