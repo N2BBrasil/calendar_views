@@ -1,7 +1,6 @@
+import 'package:calendar_views/day_view.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-
-import 'package:calendar_views/day_view.dart';
 
 /// Widget that builds a child in place of each day in a day view.
 class DayViewDaysHeader extends StatefulWidget {
@@ -10,7 +9,7 @@ class DayViewDaysHeader extends StatefulWidget {
   }) : assert(headerItemBuilder != null);
 
   /// Function that builds a header item.
-  final DayViewDaysHeaderItemBuilder  headerItemBuilder;
+  final DayViewDaysHeaderItemBuilder headerItemBuilder;
 
   @override
   State createState() => new _DayViewDaysHeaderState();
@@ -59,19 +58,18 @@ This widget must be a decendant of DayViewEssentials.
     );
 
     return new IntrinsicHeight(
-          child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: rowChildren,
-        ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: rowChildren,
+      ),
     );
   }
 
   Widget _buildStartingOffset() {
-    double width = _horizontalPositioner.eventAreaLeft;
+    double width =
+        _horizontalPositioner.eventAreaLeft - DAY_VIEW_MARGIN_SPACING;
 
-    return new Container(
-      width: width
-    );
+    return new Container(width: width);
   }
 
   List<Widget> _buildDaysAndSeparations() {
@@ -133,5 +131,6 @@ This widget must be a decendant of DayViewEssentials.
 
   double get _endingOffsetWidth =>
       _horizontalPositioner.endMainAreaWidth +
-      _horizontalPositioner.endTotalAreaWidth;
+      _horizontalPositioner.endTotalAreaWidth -
+      12;
 }

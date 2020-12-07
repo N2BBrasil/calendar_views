@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
-
 import 'package:calendar_views/day_view.dart';
 import 'package:calendar_views/src/_internal_date_time/all.dart';
+import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
 /// Signature for a function that builds a generated support line.
 typedef Positioned GeneratedSupportLineBuilder(
@@ -90,7 +89,7 @@ class SupportLineComponent implements ScheduleComponent {
   }) {
     double left;
     if (extendOverStartMainArea) {
-      left = positioner.startMainAreaLeft;
+      left = positioner.startMainAreaLeft - DAY_VIEW_MARGIN_SPACING;
     } else {
       left = positioner.startMainAreaRight;
     }

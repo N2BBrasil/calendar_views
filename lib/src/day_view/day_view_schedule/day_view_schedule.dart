@@ -2,6 +2,8 @@ import 'package:calendar_views/day_view.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
+const DAY_VIEW_MARGIN_SPACING = 12;
+
 /// Widget for display a day view schedule with the given [components].
 class DayViewSchedule extends StatefulWidget {
   DayViewSchedule({
@@ -109,13 +111,12 @@ Either heightPerMinute must be provided or this widget placed as a child of a wi
                 (positioner.properties.numberOfDays) -
             positioner.widths.timeIndicationAreaWidth;
 
-        if (positioner.properties.numberOfDays > 2 &&
-            positioner.properties.numberOfDays < 6) {
-          addWidth += positioner.dayAreaWidth(2) *
-              (positioner.properties.numberOfDays - 2);
-        } else if (positioner.properties.numberOfDays > 8) {
+        if (positioner.properties.numberOfDays > 8) {
           addWidth += positioner.dayAreaWidth(8) *
-              (positioner.properties.numberOfDays - 8);
+                  (positioner.properties.numberOfDays - 8) -
+              (DAY_VIEW_MARGIN_SPACING * 2);
+        } else {
+          addWidth -= 58;
         }
 
         return new Container(

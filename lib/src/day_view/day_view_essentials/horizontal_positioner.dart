@@ -1,3 +1,4 @@
+import 'package:calendar_views/calendar_views.dart';
 import 'package:meta/meta.dart';
 
 import 'day_view_area.dart';
@@ -247,12 +248,10 @@ class HorizontalPositioner {
     double r = eventAreaWidth;
     r -= (properties.numberOfDaySeparations * _constantDaySeparationAreaWidth);
 
-    if (properties.numberOfDays > 2 && properties.numberOfDays < 8) {
-      r /= 2;
-    } else if (properties.numberOfDays > 8) {
+    if (properties.numberOfDays > 8) {
       r /= 8;
     } else {
-      r /= properties.numberOfDays;
+      r /= properties.numberOfDays + (properties.numberOfDays * .025);
     }
 
     r = _minimumZero(r);
@@ -271,7 +270,7 @@ class HorizontalPositioner {
     double r = eventAreaLeft;
     r += dayNumber * _constantDaySeparationAreaWidth;
     r += dayNumber * _constantDayAreaWidth;
-    return r;
+    return r - DAY_VIEW_MARGIN_SPACING;
   }
 
   double dayAreaRight(int dayNumber) {
